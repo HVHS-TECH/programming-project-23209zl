@@ -1,27 +1,21 @@
-function preload() {
-
-imgBG = loadImage('/background.jpg');
-
-}
-
-
 function setup() {
-cnv = new Canvas(1000, 1500);
+cnv = new Canvas(900, 900);
 
-wallLH = new Sprite(0, 750, 8, 1500, 'k');
+wallLH = new Sprite(0, height/2, 8, height, 'k');
 wallLH.color = 'black';
 
-wallRH = new Sprite(1000, 750, 8, 1500, 'k');
+wallRH = new Sprite(width, height/2, 8, height, 'k');
 wallRH.color = 'black';
 
-wallTop = new Sprite(500, 0, 1000, 8, 'k');
+wallTop = new Sprite(width/2, 0, width, 8, 'k');
 wallTop.color = 'black';
 
-wallBot = new Sprite(500, 1000, 1000, 8, 'k');
+wallBot = new Sprite(width/2, height, width, 8, 'k');
 wallBot.color = 'black';
 
 }
 
 function draw() {
-background(imgBG);
+background('lightblue');
 }
+
