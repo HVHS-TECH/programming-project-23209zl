@@ -10,32 +10,35 @@
 //Variables
 const height = 900;
 const width = 900;
-
+const time = 90;
 
 function preload() {
-imgBG = "/background.jpg"
+imgBG = loadImage('../background.jpg');
+
 }
 
 function setup() {
     cnv = new Canvas(height, width);
 
-    wallLH = new Sprite(0, height / 2, 8, height, 'k');
-    wallLH.color = 'black';
+    wallLH = new Sprite(0, height / 2, 20, height, 'k');
+    wallLH.color = 'grey';
 
-    wallRH = new Sprite(width, height / 2, 8, height, 'k');
-    wallRH.color = 'black';
+    wallRH = new Sprite(width, height / 2, 20, height, 'k');
+    wallRH.color = 'grey';
 
-    wallTop = new Sprite(width / 2, 0, width, 8, 'k');
-    wallTop.color = 'black';
+    wallTop = new Sprite(width / 2, 0, width, 20, 'k');
+    wallTop.color = 'grey';
 
-    wallBot = new Sprite(width / 2, height, width, 8, 'k');
-    wallBot.color = 'black';
+    wallBot = new Sprite(width / 2, height, width, 20, 'k');
+    wallBot.color = 'grey';
 
+    Bball = new Sprite(width/2, 650, 100);
+    Bball.color = 'orange';
+
+    BballHoop = new Sprite(width/2, 300, 250, 150)
+    BballHoop.color = 'white';
 }
 
-function startGame(){
-
-}
 
 /*******************************************************/
 // draw()
