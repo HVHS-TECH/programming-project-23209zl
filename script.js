@@ -13,31 +13,61 @@ const width = 900;
 const time = 90;
 
 function preload() {
-imgBG = loadImage('../background.jpg');
-
+    imgBG = loadImage('../background.jpg');
+    imgBball = loadImage('../bball.png');
+    imgBackboard = loadImage('../BballBackboard.png');
 }
+
 
 function setup() {
     cnv = new Canvas(height, width);
 
     wallLH = new Sprite(0, height / 2, 20, height, 'k');
-    wallLH.color = 'grey';
+    wallLH.color = 'blue';
 
     wallRH = new Sprite(width, height / 2, 20, height, 'k');
-    wallRH.color = 'grey';
+    wallRH.color = 'red';
 
     wallTop = new Sprite(width / 2, 0, width, 20, 'k');
-    wallTop.color = 'grey';
+    wallTop.color = 'blue';
 
     wallBot = new Sprite(width / 2, height, width, 20, 'k');
-    wallBot.color = 'grey';
+    wallBot.color = 'red';
 
-    Bball = new Sprite(width/2, 650, 100);
-    Bball.color = 'orange';
+    Bball = new Sprite(width / 2, 650, 100);
+    Bball.image = (imgBball);
+    imgBball.resize(80, 80);
 
-    BballHoop = new Sprite(width/2, 300, 250, 150)
-    BballHoop.color = 'white';
+
+    BballBackboard = new Sprite(width / 2, 300, 250, 150);
+    BballBackboard.image = (imgBackboard);
+    imgBackboard.resize(300, 250);
+
+
+    if (startBtn.pressed) {
+        BballBackground.vel.x = -6;
+        BballBackground.vel.x = 6;
+
+    }
 }
+
+/*******************************************************/
+// timer()
+/*******************************************************/
+
+
+
+
+/*******************************************************/
+// startButton()
+/*******************************************************/
+
+
+
+
+/*******************************************************/
+// endScreen()
+/*******************************************************/
 
 
 /*******************************************************/
