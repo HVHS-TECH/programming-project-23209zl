@@ -12,6 +12,7 @@ const height = 900;
 const width = 900;
 const time = 90;
 
+
 function preload() {
     imgBG = loadImage('../background.jpg');
     imgBball = loadImage('../bball.png');
@@ -43,12 +44,9 @@ function setup() {
     BballBackboard.image = (imgBackboard);
     imgBackboard.resize(300, 250);
 
+    BballBackboard.vel.x = 3;
+    Bball.rotationSpeed = 2;
 
-    if (startBtn.pressed) {
-        BballBackground.vel.x = -6;
-        BballBackground.vel.x = 6;
-
-    }
 }
 
 /*******************************************************/
@@ -64,7 +62,6 @@ function setup() {
 
 
 
-
 /*******************************************************/
 // endScreen()
 /*******************************************************/
@@ -75,7 +72,34 @@ function setup() {
 /*******************************************************/
 function draw() {
     background(imgBG);
+
+    if (BballBackboard.collides(wallLH)) {
+        BballBackboard.vel.x = 3;
+    }
+
+    if (BballBackboard.collides(wallRH)) {
+        BballBackboard.vel.x = -3;
+    }
+
+    if (kb.presses('space')) {
+        Bball.vel.y = -6;
+    }
+
+    if (Bball.collides(wallTop)) {
+        Bball.vel.y = 0;
+        Bball.x = width / 2;
+        Bball.y = 650;
+    }
+
+    if (Bball.collides(BballBackboard)) {
+        score = score + 1;
+        Bball.vel.y = 0;
+        Bball.x = width / 2;
+        Bball.y = 650;
+    }
 }
+
+
 
 /*******************************************************/
 //  END OF APP
