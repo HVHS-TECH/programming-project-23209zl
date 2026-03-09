@@ -47,8 +47,10 @@ function setup() {
     BballBackboard.vel.x = 3;
     Bball.rotationSpeed = 2;
 
-    StartBtn = new Sprite()
-
+    StartBtn = new Sprite(width / 2, 800, 150, 50);
+    StartBtn.color = '#007bff';
+    StartBtn.text = 'Start';
+    StartBtn.textSize = (30);
 }
 
 /*******************************************************/
@@ -98,6 +100,10 @@ function draw() {
         Bball.vel.y = 0;
         Bball.x = width / 2;
         Bball.y = 650;
+    }
+
+    if (kb.presses(StartBtn)) {
+
     }
 }
 
