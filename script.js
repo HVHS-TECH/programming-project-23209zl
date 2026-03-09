@@ -47,6 +47,8 @@ function setup() {
     BballBackboard.vel.x = 3;
     Bball.rotationSpeed = 2;
 
+    StartBtn = new Sprite(100, width/2, )
+
 }
 
 /*******************************************************/
