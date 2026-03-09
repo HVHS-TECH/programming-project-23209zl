@@ -10,7 +10,9 @@
 //Variables
 const height = 900;
 const width = 900;
-const time = 90;
+let time = 90;
+let gameStarted = false;
+let score = 0;
 
 
 function preload() {
@@ -19,9 +21,8 @@ function preload() {
     imgBackboard = loadImage('BballBackboard.png');
 }
 
-
 function setup() {
-    cnv = new Canvas(height, width);
+    cnv = new Canvas(width, height);
 
     wallLH = new Sprite(0, height / 2, 20, height, 'k');
     wallLH.color = 'blue';
@@ -50,7 +51,8 @@ function setup() {
     StartBtn = new Sprite(width / 2, 800, 150, 50);
     StartBtn.color = '#007bff';
     StartBtn.text = 'Start';
-    StartBtn.textSize = (30);
+    StartBtn.textSize = (25);
+    StartBtn.visible = true;
 }
 
 /*******************************************************/
@@ -77,33 +79,36 @@ function setup() {
 function draw() {
     background(imgBG);
 
-    if (BballBackboard.collides(wallLH)) {
-        BballBackboard.vel.x = 3;
+    if (StartBtn.mouse.presses) {
+        gameStarted = true;
+        StartBtn.visible = false;
     }
 
-    if (BballBackboard.collides(wallRH)) {
-        BballBackboard.vel.x = -3;
-    }
+    if (gameStarted) {
+        if (BballBackboard.collides(wallLH)) {
+            BballBackboard.vel.x = 3;
+        }
 
-    if (kb.presses('space')) {
-        Bball.vel.y = -6;
-    }
+        if (BballBackboard.collides(wallRH)) {
+            BballBackboard.vel.x = -3;
+        }
 
-    if (Bball.collides(wallTop)) {
-        Bball.vel.y = 0;
-        Bball.x = width / 2;
-        Bball.y = 650;
-    }
+        if (kb.presses('space')) {
+            Bball.vel.y = -6;
+        }
 
-    if (Bball.collides(BballBackboard)) {
-        score = score + 1;
-        Bball.vel.y = 0;
-        Bball.x = width / 2;
-        Bball.y = 650;
-    }
+        if (Bball.collides(wallTop)) {
+            Bball.vel.y = 0;
+            Bball.x = width / 2;
+            Bball.y = 650;
+        }
 
-    if (kb.presses(StartBtn)) {
-
+        if (Bball.collides(BballBackboard)) {
+            score = score + 1;
+            Bball.vel.y = 0;
+            Bball.x = width / 2;
+            Bball.y = 650;
+        }
     }
 }
 
