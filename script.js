@@ -14,9 +14,9 @@ const time = 90;
 
 
 function preload() {
-    imgBG = loadImage('../background.jpg');
-    imgBball = loadImage('../bball.png');
-    imgBackboard = loadImage('../BballBackboard.png');
+    imgBG = loadImage('background.jpg');
+    imgBball = loadImage('bball.png');
+    imgBackboard = loadImage('BballBackboard.png');
 }
 
 
@@ -47,7 +47,7 @@ function setup() {
     BballBackboard.vel.x = 3;
     Bball.rotationSpeed = 2;
 
-    StartBtn = new Sprite(100, width/2, )
+    StartBtn = new Sprite()
 
 }
 
