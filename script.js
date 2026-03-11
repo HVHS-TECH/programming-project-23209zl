@@ -45,28 +45,12 @@ function setup() {
     BballBackboard.image = (imgBackboard);
     imgBackboard.resize(300, 250);
 
-    BballBackboard.vel.x = 3;
-    Bball.rotationSpeed = 2;
-
-    StartBtn = new Sprite(width / 2, 800, 150, 50);
-    StartBtn.color = '#007bff';
-    StartBtn.text = 'Start';
+    StartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
+    StartBtn.color = '#FFFDD0';
+    StartBtn.text = 'Start Game';
     StartBtn.textSize = (25);
     StartBtn.visible = true;
 }
-
-/*******************************************************/
-// timer()
-/*******************************************************/
-
-
-
-
-/*******************************************************/
-// startButton()
-/*******************************************************/
-
-
 
 /*******************************************************/
 // endScreen()
@@ -79,9 +63,11 @@ function setup() {
 function draw() {
     background(imgBG);
 
-    if (StartBtn.mouse.presses) {
+    if (StartBtn.mouse.pressed()) {
         gameStarted = true;
         StartBtn.visible = false;
+        BballBackboard.vel.x = 3;
+        Bball.rotationSpeed = 2;
     }
 
     if (gameStarted) {
@@ -99,7 +85,9 @@ function draw() {
 
         if (Bball.collides(wallTop)) {
             Bball.vel.y = 0;
+            Bball.vel.x = 0;
             Bball.x = width / 2;
+            Bball.rotationSpeed = 2;
             Bball.y = 650;
         }
 
@@ -107,6 +95,11 @@ function draw() {
             score = score + 1;
             Bball.vel.y = 0;
             Bball.x = width / 2;
+            Bball.y = 650;
+            Bball.vel.y = 0;
+            Bball.vel.x = 0;
+            Bball.x = width / 2;
+            Bball.rotationSpeed = 2;
             Bball.y = 650;
         }
     }
