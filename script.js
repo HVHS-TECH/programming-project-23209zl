@@ -41,9 +41,9 @@ function setup() {
     imgBball.resize(80, 80);
 
 
-    BballBackboard = new Sprite(width / 2, 300, 250, 150);
+    BballBackboard = new Sprite(width / 2, 300, 250, 150, 'k');
     BballBackboard.image = (imgBackboard);
-    imgBackboard.resize(300, 250);
+    imgBackboard.resize(300, 250); 
 
     StartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
     StartBtn.color = '#FFFDD0';
@@ -78,7 +78,7 @@ function draw() {
         if (BballBackboard.collides(wallRH)) {
             BballBackboard.vel.x = -3;
         }
-
+        
         if (kb.presses('space')) {
             Bball.vel.y = -6;
         }
