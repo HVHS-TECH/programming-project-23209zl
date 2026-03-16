@@ -12,6 +12,7 @@ const height = 900;
 const width = 900;
 let time = 30;
 let gameStarted = false;
+let gameEnded = false;
 let score = 0;
 
 
@@ -74,15 +75,15 @@ function draw() {
     //When start button is pressed game starts
 
     if (gameStarted) {
-        if (BballBackboard.x <= wallLH.x) {
+        if (BballBackboard.x <= wallLH.x + 125) {
             BballBackboard.vel.x = 3;
         }
-        //When backboard center x position gets to left wall it goes right
+        //When backboard hits left wall change direction and move right
 
-        if (BballBackboard.x >= wallRH.x) {
+        if (BballBackboard.x >= wallRH.x - 125) {
             BballBackboard.vel.x = -3;
         }
-        //When backboard center x position gets to right wall it goes left
+        //When backboard hits right wall change direction and move left
 
         if (kb.presses('space')) {
             Bball.vel.y = -6;
@@ -90,13 +91,19 @@ function draw() {
         //Shoots the basketball when space is pressed
 
         if (Bball.collides(wallTop)) {
-            Bball.vel.y = 0;
             Bball.vel.x = 0;
-            Bball.x = width / 2;
-            Bball.rotationSpeed = 3;
-            Bball.y = 650;
+            Bball.vel.y = 0;
+            Bball.rotationSpeed = 0;
+            BballBackboard.vel.x = 0;
+            Bball.visible = false;
+            BballBackboard.visible = false;
+            gameStarted = false;
+            gameEnded = true;
+            textSize(25);
+            fill('white');
+            text("GAME ENDED! Your final score is " + score + "!", 300, height/2);
         }
-        //Resets the basketball when hits top wall
+        //When basketball hits top wall game ends
 
         if (Bball.collides(BballBackboard)) {
             score = score + 1;
@@ -110,9 +117,22 @@ function draw() {
             Bball.y = 650;
         }
         //Resets the basketball when hits the backboard and adds the score
+
+        textSize(25);
+        fill("white");
+        text("Score: " + score, 20, 50);
+        //Scores
+
+        textSize(20);
+        fill("white");
+        text("Press space to shoot the basketball", 300, 750);
+   
     }
 
+
 }
+
+
 
 
 
