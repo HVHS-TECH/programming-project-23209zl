@@ -99,9 +99,6 @@ function draw() {
             BballBackboard.visible = false;
             gameStarted = false;
             gameEnded = true;
-            textSize(25);
-            fill('white');
-            text("GAME ENDED! Your final score is " + score + "!", 300, height/2);
         }
         //When basketball hits top wall game ends
 
@@ -126,10 +123,14 @@ function draw() {
         textSize(20);
         fill("white");
         text("Press space to shoot the basketball", 300, 750);
-   
+
     }
 
-
+    if (gameEnded) {
+        textSize(35);
+        fill('white');
+        text("GAME ENDED! Your Final Score Is " + score + "!", 150, height / 2);
+    }
 }
 
 
