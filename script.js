@@ -10,7 +10,10 @@
 //Variables
 const height = 900;
 const width = 900;
-let time = 30;
+let totalTime = 60;
+let startTime;
+let timeRemaining;
+let runningTime;
 let gameStarted = false;
 let gameEnded = false;
 let score = 0;
@@ -36,29 +39,27 @@ function setup() {
 
     wallBot = new Sprite(width / 2, height, width, 20, 'k');
     wallBot.color = 'red';
+    //Walls
+
 
     Bball = new Sprite(width / 2, 650, 100);
     Bball.image = (imgBball);
     imgBball.resize(80, 80);
-
+    //Basketball
 
     BballBackboard = new Sprite(width / 2, 300, 250, 150, 'k');
     BballBackboard.image = (imgBackboard);
     imgBackboard.resize(300, 250);
+    //Backboard
 
     StartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
     StartBtn.color = '#b5fd84';
     StartBtn.text = 'Start Game';
     StartBtn.textSize = (25);
     StartBtn.visible = true;
-
+    //start button
 
 }
-
-/*******************************************************/
-// endScreen()
-/*******************************************************/
-
 
 /*******************************************************/
 // draw()
@@ -71,6 +72,7 @@ function draw() {
         StartBtn.visible = false;
         BballBackboard.vel.x = 3;
         Bball.rotationSpeed = 3;
+        let startTime = millis();
     }
     //When start button is pressed game starts
 
@@ -123,15 +125,35 @@ function draw() {
         textSize(20);
         fill("white");
         text("Press space to shoot the basketball", 300, 750);
+        //How to play (Instructions)
 
+        textSize(25);
+        fill("white");
+        let currentTime = millis();
+        let runningTime = ((currentTime - startTime) / 1000);
+        timeRemaining = totalTime - runningTime;
     }
+
+
+    /*******************************************************/
+    // endScreen()
+    /*******************************************************/
 
     if (gameEnded) {
         textSize(35);
         fill('white');
         text("GAME ENDED! Your Final Score Is " + score + "!", 150, height / 2);
+        //Final score text (if the ball hits the top wall)
+    } else if (timeRemaining <= 0) {
+        timeRemaining = 0;
+        text("GAME ENDED! Your Final Score Is " + score + "!", 150, height / 2);
+        //Final score text (if time ends)
     }
+
 }
+
+
+
 
 
 
