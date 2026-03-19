@@ -12,7 +12,7 @@ const height = 900;
 const width = 900;
 let totalTime = 60;
 let startTime;
-let timeRemaining;
+let timeRemaining = totalTime;
 let runningTime;
 let gameStarted = false;
 let gameEnded = false;
@@ -72,7 +72,7 @@ function draw() {
         StartBtn.visible = false;
         BballBackboard.vel.x = 3;
         Bball.rotationSpeed = 3;
-        let startTime = millis();
+        startTime = millis();
     }
     //When start button is pressed game starts
 
@@ -127,11 +127,26 @@ function draw() {
         text("Press space to shoot the basketball", 300, 750);
         //How to play (Instructions)
 
+        let currentTime = millis();
+        runningTime = ((currentTime - startTime) / 1000);
+        timeRemaining = totalTime - runningTime;
+
+        if (timeRemaining <= 0) {
+            timeRemaining = 0;
+            gameStarted = false;
+            gameEnded = true;
+            Bball.vel.x = 0;
+            Bball.vel.y = 0;
+            Bball.rotationSpeed = 0;
+            BballBackboard.vel.x = 0;
+            Bball.visible = false;
+            BballBackboard.visible = false;
+        }
+
         textSize(25);
         fill("white");
-        let currentTime = millis();
-        let runningTime = ((currentTime - startTime) / 1000);
-        timeRemaining = totalTime - runningTime;
+        text("Time: " + Math.ceil(timeRemaining), 700, 50);
+
     }
 
 
@@ -144,13 +159,13 @@ function draw() {
         fill('white');
         text("GAME ENDED! Your Final Score Is " + score + "!", 150, height / 2);
         //Final score text (if the ball hits the top wall)
-    } else if (timeRemaining <= 0) {
-        timeRemaining = 0;
-        text("GAME ENDED! Your Final Score Is " + score + "!", 150, height / 2);
-        //Final score text (if time ends)
+
     }
 
+
 }
+
+
 
 
 
