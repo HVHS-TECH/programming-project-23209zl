@@ -88,11 +88,13 @@ function draw() {
         //When backboard hits right wall change direction and move left
 
         if (kb.presses('space')) {
-            Bball.vel.y = -6;
+            Bball.vel.y += 0.4;
+            Bball.vel.y = -8;
         }
         //Shoots the basketball when space is pressed
 
         if (Bball.collides(wallTop)) {
+
             Bball.vel.x = 0;
             Bball.vel.y = 0;
             Bball.rotationSpeed = 0;
@@ -102,10 +104,15 @@ function draw() {
             gameStarted = false;
             gameEnded = true;
         }
-        //When basketball hits top wall game ends
+
 
         if (Bball.collides(BballBackboard)) {
-            score = score + 1;
+            if (timeRemaining <= 30) {
+                score + 2;
+            } else {
+                score + 1;
+            }
+
             Bball.vel.y = 0;
             Bball.x = width / 2;
             Bball.y = 650;
@@ -142,10 +149,21 @@ function draw() {
             Bball.visible = false;
             BballBackboard.visible = false;
         }
+        //if game time = 0 game ends (Bball/Backboard stops moving and visible = false)
 
         textSize(25);
         fill("white");
         text("Time: " + Math.ceil(timeRemaining), 700, 50);
+        //Time
+
+        if (timeRemaining <= 30) {
+            BballBackboard.vel.x = 6;
+            text("DOUBLE POINTS! LEVEL INCREASED!", 150, height/2);
+        }
+
+        if (timeRemaining <= 30 && timeRemaining >= 28) {
+            text("DOUBLE POINTS! LEVEL INCREASED!", 150, height/2);
+        }
 
     }
 
@@ -158,7 +176,7 @@ function draw() {
         textSize(35);
         fill('white');
         text("GAME ENDED! Your Final Score Is " + score + "!", 150, height / 2);
-        //Final score text (if the ball hits the top wall)
+        //Final score text
 
     }
 
