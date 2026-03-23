@@ -17,7 +17,7 @@ let runningTime;
 let gameStarted = false;
 let gameEnded = false;
 let score = 0;
-
+let speed = 3;
 
 function preload() {
     imgBG = loadImage('background.jpg');
@@ -59,6 +59,9 @@ function setup() {
     StartBtn.visible = true;
     //start button
 
+    HitBox = new Sprite(width / 2, 300, 150, 150, 'k');
+    HitBox.visible = false;
+    //Hit box (instead of whole backboard)
 }
 
 /*******************************************************/
@@ -78,12 +81,12 @@ function draw() {
 
     if (gameStarted) {
         if (BballBackboard.x <= wallLH.x + 125) {
-            BballBackboard.vel.x = 3;
+            BballBackboard.vel.x = speed;
         }
         //When backboard hits left wall change direction and move right
 
         if (BballBackboard.x >= wallRH.x - 125) {
-            BballBackboard.vel.x = -3;
+            BballBackboard.vel.x = -speed;
         }
         //When backboard hits right wall change direction and move left
 
@@ -105,22 +108,28 @@ function draw() {
             gameEnded = true;
         }
 
-
         if (Bball.collides(BballBackboard)) {
+            Bball.vel.y = 0;
+            Bball.x = width / 2;
+            Bball.y = 650;
+            Bball.vel.x = 0;
+            Bball.rotationSpeed = 3;
+        }
+
+
+        if (Bball.collides(HitBox)) {
             if (timeRemaining <= 30) {
-                score + 2;
+                score += 2;
             } else {
-                score + 1;
+                score += 1;
             }
+            //Double points at 30 seconds
 
             Bball.vel.y = 0;
             Bball.x = width / 2;
             Bball.y = 650;
-            Bball.vel.y = 0;
             Bball.vel.x = 0;
-            Bball.x = width / 2;
             Bball.rotationSpeed = 3;
-            Bball.y = 650;
         }
         //Resets the basketball when hits the backboard and adds the score
 
@@ -157,16 +166,15 @@ function draw() {
         //Time
 
         if (timeRemaining <= 30) {
-            BballBackboard.vel.x = 6;
-            text("DOUBLE POINTS! LEVEL INCREASED!", 150, height/2);
+            speed = 6;
+            text("DOUBLE POINTS! LEVEL INCREASED!", 230, height / 2);
         }
-
-        if (timeRemaining <= 30 && timeRemaining >= 28) {
-            text("DOUBLE POINTS! LEVEL INCREASED!", 150, height/2);
-        }
+        //30 seconds level increases (faster speed)
 
     }
-
+    HitBox.x = BballBackboard.x;
+    HitBox.y = BballBackboard.y;
+    //Hit box follows the backboard
 
     /*******************************************************/
     // endScreen()
@@ -182,15 +190,6 @@ function draw() {
 
 
 }
-
-
-
-
-
-
-
-
-
 
 /*******************************************************/
 //  END OF APP
