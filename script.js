@@ -62,6 +62,12 @@ function setup() {
     HitBox = new Sprite(width / 2, 300, 150, 150, 'k');
     HitBox.visible = false;
     //Hit box (instead of whole backboard)
+
+    RestartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
+    RestartBtn.color = '#b5fd84';
+    RestartBtn.text = 'Play Again';
+    RestartBtn.textSize = 25;
+    RestartBtn.visible = false;
 }
 
 /*******************************************************/
@@ -172,6 +178,7 @@ function draw() {
         //30 seconds level increases (faster speed)
 
     }
+
     HitBox.x = BballBackboard.x;
     HitBox.y = BballBackboard.y;
     //Hit box follows the backboard
@@ -186,11 +193,24 @@ function draw() {
         text("GAME ENDED! Your Final Score Is " + score + "!", 150, height / 2);
         //Final score text
 
+        RestartBtn.visible = true;
     }
 
+    if (RestartBtn.mouse.presses()) {
+        gameStarted = false;
+        gameEnded = false;
+        StartBtn.visible = true;
+        RestartBtn.visible = false;
 
+        if (StartBtn.mouse.pressed()) {
+            gameStarted = true;
+            StartBtn.visible = false;
+            BballBackboard.vel.x = 3;
+            Bball.rotationSpeed = 3;
+            startTime = millis();
+        }
+    }
 }
-
 /*******************************************************/
 //  END OF APP
 /*******************************************************/
