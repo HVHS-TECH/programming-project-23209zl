@@ -164,7 +164,7 @@ function draw() {
             Bball.visible = false;
             BballBackboard.visible = false;
         }
-        //if game time = 0 game ends (Bball/Backboard stops moving and visible = false)********************************
+        //if game time = 0 game ends (Bball/Backboard stops moving and visible = false)
 
         textSize(25);
         fill("white");
@@ -176,7 +176,6 @@ function draw() {
             text("DOUBLE POINTS! LEVEL INCREASED!", 230, height / 2);
         }
         //30 seconds level increases (faster speed)
-
     }
 
     HitBox.x = BballBackboard.x;
@@ -218,6 +217,7 @@ function draw() {
             Bball.x = width / 2;
             Bball.y = 650;
         }
+        //Play again button/restart button
     }
 }
 
