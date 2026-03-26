@@ -79,7 +79,7 @@ function draw() {
     if (StartBtn.mouse.pressed()) {
         gameStarted = true;
         StartBtn.visible = false;
-        BballBackboard.vel.x = 3;
+        BballBackboard.vel.x = speed;
         Bball.rotationSpeed = 3;
         startTime = millis();
     }
@@ -164,7 +164,7 @@ function draw() {
             Bball.visible = false;
             BballBackboard.visible = false;
         }
-        //if game time = 0 game ends (Bball/Backboard stops moving and visible = false)
+        //if game time = 0 game ends (Bball/Backboard stops moving and visible = false)********************************
 
         textSize(25);
         fill("white");
@@ -194,23 +194,33 @@ function draw() {
         //Final score text
 
         RestartBtn.visible = true;
-    }
 
-    if (RestartBtn.mouse.presses()) {
-        gameStarted = false;
-        gameEnded = false;
-        StartBtn.visible = true;
-        RestartBtn.visible = false;
-
-        if (StartBtn.mouse.pressed()) {
+        if (gameEnded && RestartBtn.mouse.pressed()) {
+            gameEnded = false;
             gameStarted = true;
-            StartBtn.visible = false;
-            BballBackboard.vel.x = 3;
-            Bball.rotationSpeed = 3;
+
+            RestartBtn.visible = false;
+
+            BballBackboard.visible = true;
+            Bball.visible = true;
+
+            speed = 3;
+            score = 0;
+
             startTime = millis();
+            timeRemaining = totalTime;
+
+            BballBackboard.vel.x = speed;
+
+            Bball.rotationSpeed = 3;
+            Bball.vel.y = 0;
+
+            Bball.x = width / 2;
+            Bball.y = 650;
         }
     }
 }
+
 /*******************************************************/
 //  END OF APP
 /*******************************************************/
