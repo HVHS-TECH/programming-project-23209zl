@@ -18,6 +18,7 @@ let gameStarted = false;
 let gameEnded = false;
 let score = 0;
 let speed = 3;
+let lives = 3;
 
 function preload() {
     imgBG = loadImage('background.jpg');
@@ -103,10 +104,15 @@ function draw() {
         //Shoots the basketball when space is pressed
 
         if (Bball.collides(wallTop)) {
-
             Bball.vel.x = 0;
             Bball.vel.y = 0;
+            Bball.x = width / 2;
+            Bball.y = 650;
             Bball.rotationSpeed = 0;
+            lives = lives - 1;
+        }
+
+        if (lives == 0) {
             BballBackboard.vel.x = 0;
             Bball.visible = false;
             BballBackboard.visible = false;
@@ -176,6 +182,16 @@ function draw() {
             text("DOUBLE POINTS! LEVEL INCREASED!", 230, height / 2);
         }
         //30 seconds level increases (faster speed)
+
+
+        textSize(25);
+        fill("white");
+        text("Lives:", width / 2, 50);
+
+        for (let i = 0; i < lives; i++) {
+           circle(550 + i * 30, 40, 20);
+        }
+
     }
 
     HitBox.x = BballBackboard.x;
@@ -216,6 +232,8 @@ function draw() {
 
             Bball.x = width / 2;
             Bball.y = 650;
+
+            lives = 3;
         }
         //Play again button/restart button
     }
