@@ -25,6 +25,7 @@ function preload() {
     imgBball = loadImage('bball.png');
     imgBackboard = loadImage('BballBackboard.png');
 }
+//images
 
 function setup() {
     cnv = new Canvas(width, height);
@@ -98,7 +99,6 @@ function draw() {
         //When backboard hits right wall change direction and move left
 
         if (kb.presses('space')) {
-            Bball.vel.y += 0.4;
             Bball.vel.y = -8;
         }
         //Shoots the basketball when space is pressed
@@ -189,7 +189,7 @@ function draw() {
         text("Lives:", width / 2, 50);
 
         for (let i = 0; i < lives; i++) {
-           circle(550 + i * 30, 40, 20);
+            circle(550 + i * 30, 40, 20);
         }
 
     }
