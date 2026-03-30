@@ -191,7 +191,7 @@ function draw() {
         for (let i = 0; i < lives; i++) {
             circle(550 + i * 30, 40, 20);
         }
-
+        //lives using for loop
     }
 
     HitBox.x = BballBackboard.x;
