@@ -25,7 +25,7 @@ function preload() {
     imgBball = loadImage('bball.png');
     imgBackboard = loadImage('BballBackboard.png');
 }
-//images
+//images for the basketball, backboard and game screen
 
 function setup() {
     cnv = new Canvas(width, height);
@@ -41,29 +41,29 @@ function setup() {
 
     wallBot = new Sprite(width / 2, height, width, 20, 'k');
     wallBot.color = 'red';
-    //Walls
+    //Walls and boundaries
 
 
     Bball = new Sprite(width / 2, 650, 100);
     Bball.image = (imgBball);
     imgBball.resize(80, 80);
-    //Basketball
+    //Basketball sprite and image
 
     BballBackboard = new Sprite(width / 2, 300, 250, 150, 'k');
     BballBackboard.image = (imgBackboard);
     imgBackboard.resize(300, 250);
-    //Backboard
+    //Backboard sprite and image
 
     StartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
     StartBtn.color = '#b5fd84';
     StartBtn.text = 'Start Game';
     StartBtn.textSize = (25);
     StartBtn.visible = true;
-    //start button
+    //start button sprite
 
     HitBox = new Sprite(width / 2, 300, 150, 150, 'k');
     HitBox.visible = false;
-    //Hit box (instead of whole backboard)
+    //Small hit box instead of using whole backboard as the hit box
 
     RestartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
     RestartBtn.color = '#b5fd84';
@@ -85,18 +85,20 @@ function draw() {
         Bball.rotationSpeed = 3;
         startTime = millis();
     }
-    //When start button is pressed game starts
+    //When start button is pressed game starts (gameStarted = true)
 
     if (gameStarted) {
         if (BballBackboard.x <= wallLH.x + 125) {
             BballBackboard.vel.x = speed;
         }
-        //When backboard hits left wall change direction and move right
+        //When backboard hits left wall, change direction and move right
+        //125 pixies instead of using center point of backboard to change direction so it doesn't go ourside the boundary
 
         if (BballBackboard.x >= wallRH.x - 125) {
             BballBackboard.vel.x = -speed;
         }
-        //When backboard hits right wall change direction and move left
+        //When backboard hits right wall, change direction and move left
+        //125 pixies instead of using center point of backboard to change direction so it doesn't go ourside the boundary
 
         if (kb.presses('space')) {
             Bball.vel.y = -8;
@@ -111,6 +113,8 @@ function draw() {
             Bball.rotationSpeed = 0;
             lives = lives - 1;
         }
+        //When basketball hits the top wall live = live -1. resets the basketball position
+
 
         if (lives == 0) {
             BballBackboard.vel.x = 0;
@@ -119,6 +123,7 @@ function draw() {
             gameStarted = false;
             gameEnded = true;
         }
+        //If live == 0 gameEnded = true, backboard and basketball visible = false
 
         if (Bball.collides(BballBackboard)) {
             Bball.vel.y = 0;
@@ -127,6 +132,7 @@ function draw() {
             Bball.vel.x = 0;
             Bball.rotationSpeed = 3;
         }
+        //If basketball hits the backboard instead of hitbox scores stays the same, resets the basketball x and y position
 
 
         if (Bball.collides(HitBox)) {
@@ -148,7 +154,7 @@ function draw() {
         textSize(25);
         fill("white");
         text("Score: " + score, 20, 50);
-        //Scores
+        //Scores message
 
         textSize(20);
         fill("white");
@@ -175,13 +181,13 @@ function draw() {
         textSize(25);
         fill("white");
         text("Time: " + Math.ceil(timeRemaining), 700, 50);
-        //Time
+        //Timer
 
         if (timeRemaining <= 30) {
             speed = 6;
             text("DOUBLE POINTS! LEVEL INCREASED!", 230, height / 2);
         }
-        //30 seconds level increases (faster speed)
+        //30 seconds level increases (faster backboard speed)
 
 
         textSize(25);
@@ -196,7 +202,7 @@ function draw() {
 
     HitBox.x = BballBackboard.x;
     HitBox.y = BballBackboard.y;
-    //Hit box follows the backboard
+    //Hit box follows the backboard, same x and y position/moves with the backboard
 
     /*******************************************************/
     // endScreen()
