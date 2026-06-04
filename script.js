@@ -19,6 +19,7 @@ let gameEnded = false;
 let score = 0;
 let speed = 3;
 let lives = 3;
+let fb_login;
 
 function preload() {
     imgBG = loadImage('background.jpg');
@@ -54,7 +55,7 @@ function setup() {
     imgBackboard.resize(300, 250);
     //Backboard sprite and image
 
-    StartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
+    StartBtn = new Sprite(width/2, 800, 150, 50, 'k');
     StartBtn.color = '#b5fd84';
     StartBtn.text = 'Start Game';
     StartBtn.textSize = (25);
@@ -65,11 +66,21 @@ function setup() {
     HitBox.visible = false;
     //Small hit box instead of using whole backboard as the hit box
 
-    RestartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
+    RestartBtn = new Sprite(width/2, 800, 150, 50, 'k');
     RestartBtn.color = '#b5fd84';
     RestartBtn.text = 'Play Again';
     RestartBtn.textSize = 25;
     RestartBtn.visible = false;
+
+    logInBtn = new Sprite(250, 800, 200, 50, 'k');
+    logInBtn.color = '#b5fd84';
+    logInBtn.text = 'Log In';
+    logInBtn.textSize = (25);
+
+    highScoreBtn = new Sprite(650, 800, 200, 50, 'k');
+    highScoreBtn.color = '#b5fd84';
+    highScoreBtn.text = 'Show High Score';
+    highScoreBtn.textSize = (25);
 }
 
 /*******************************************************/
@@ -81,6 +92,8 @@ function draw() {
     if (StartBtn.mouse.pressed()) {
         gameStarted = true;
         StartBtn.visible = false;
+        logInBtn.visible = false;
+        highScoreBtn.visible = false;
         BballBackboard.vel.x = speed;
         Bball.rotationSpeed = 3;
         startTime = millis();
@@ -215,6 +228,7 @@ function draw() {
         //Final score text
 
         RestartBtn.visible = true;
+        highScoreBtn.visible = true;
 
         if (gameEnded && RestartBtn.mouse.pressed()) {
             gameEnded = false;
