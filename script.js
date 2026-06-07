@@ -19,7 +19,7 @@ let gameEnded = false;
 let score = 0;
 let speed = 3;
 let lives = 3;
-let fb_login;
+let uid;
 
 function preload() {
     imgBG = loadImage('background.jpg');
@@ -258,6 +258,18 @@ function draw() {
         //Play again button/restart button
     }
 }
+
+function logInBtn(){
+     if (uid == null) {
+        alert("Please Log In First!");
+        return;
+    }
+}
+
+firebase.database().ref('/game1/userName/highScores').set({
+
+})
+
 
 /*******************************************************/
 //  END OF APP
