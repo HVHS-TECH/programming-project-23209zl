@@ -83,8 +83,6 @@ function draw() {
     if (StartBtn.mouse.pressed()) {
         gameStarted = true;
         StartBtn.visible = false;
-        logInBtn.visible = false;
-        highScoreBtn.visible = false;
         BballBackboard.vel.x = speed;
         Bball.rotationSpeed = 3;
         startTime = millis();
