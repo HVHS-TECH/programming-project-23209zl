@@ -72,15 +72,6 @@ function setup() {
     RestartBtn.textSize = 25;
     RestartBtn.visible = false;
 
-    logInBtn = new Sprite(250, 800, 200, 50, 'k');
-    logInBtn.color = '#b5fd84';
-    logInBtn.text = 'Log In';
-    logInBtn.textSize = (25);
-
-    highScoreBtn = new Sprite(650, 800, 200, 50, 'k');
-    highScoreBtn.color = '#b5fd84';
-    highScoreBtn.text = 'Show High Score';
-    highScoreBtn.textSize = (25);
 }
 
 /*******************************************************/
@@ -266,7 +257,7 @@ function logInBtn(){
     }
 }
 
-firebase.database().ref('/game1/userName/highScores').set({
+firebase.database().ref('/game1/').set({
 
 })
 
