@@ -19,7 +19,6 @@ let gameEnded = false;
 let score = 0;
 let speed = 3;
 let lives = 3;
-let uid;
 
 function preload() {
     imgBG = loadImage('background.jpg');
@@ -55,7 +54,7 @@ function setup() {
     imgBackboard.resize(300, 250);
     //Backboard sprite and image
 
-    StartBtn = new Sprite(width/2, 800, 150, 50, 'k');
+    StartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
     StartBtn.color = '#b5fd84';
     StartBtn.text = 'Start Game';
     StartBtn.textSize = (25);
@@ -66,12 +65,11 @@ function setup() {
     HitBox.visible = false;
     //Small hit box instead of using whole backboard as the hit box
 
-    RestartBtn = new Sprite(width/2, 800, 150, 50, 'k');
+    RestartBtn = new Sprite(width / 2, 800, 150, 50, 'k');
     RestartBtn.color = '#b5fd84';
     RestartBtn.text = 'Play Again';
     RestartBtn.textSize = 25;
     RestartBtn.visible = false;
-
 }
 
 /*******************************************************/
@@ -217,7 +215,6 @@ function draw() {
         //Final score text
 
         RestartBtn.visible = true;
-        highScoreBtn.visible = true;
 
         if (gameEnded && RestartBtn.mouse.pressed()) {
             gameEnded = false;
@@ -247,18 +244,6 @@ function draw() {
         //Play again button/restart button
     }
 }
-
-function logInBtn(){
-     if (uid == null) {
-        alert("Please Log In First!");
-        return;
-    }
-}
-
-firebase.database().ref('/game1/').set({
-
-})
-
 
 /*******************************************************/
 //  END OF APP
